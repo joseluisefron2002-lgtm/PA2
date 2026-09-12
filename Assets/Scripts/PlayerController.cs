@@ -46,6 +46,14 @@ public class Player : MonoBehaviour
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundRadius, groundLayer);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.transform.CompareTag("Coin"))
+        {
+           Destroy(collision.gameObject); 
+        }
+    }
+
 
 
 }
