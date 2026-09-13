@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 
 public class Player : MonoBehaviour
@@ -18,6 +20,12 @@ public class Player : MonoBehaviour
 
     private int coins;
     public TMP_Text textCoins;
+
+    public AudioSource audioSource;
+
+    public AudioClip coinClip;
+    public AudioClip barrelClip;
+
 
 
 
@@ -57,10 +65,17 @@ public class Player : MonoBehaviour
     {
         if (collision.transform.CompareTag("Coin"))
         {
-           Destroy(collision.gameObject); 
-           coins++;
-           textCoins.text = coins.ToString();
+            audioSource.PlayOneShot(coinClip);
+            Destroy(collision.gameObject); 
+            coins++;
+            textCoins.text = coins.ToString();
            
+        }
+
+        if (collision.transform.CompareTag("Spikes"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+
         }
     }
 
